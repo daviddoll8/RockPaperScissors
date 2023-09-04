@@ -23,7 +23,7 @@ function playRound(playerSelection, computerSelection){
             case "scissors":
                 return "You Win! Rock beats Scissors.";
             default:
-                return "Invalid Computer Selection";
+                return "invalid computer selection";
         }
     }else if(playerSelection === "paper"){
         switch (computerSelection) {
@@ -34,7 +34,7 @@ function playRound(playerSelection, computerSelection){
             case "scissors":
                 return "You Lose! Scissors beats Paper.";
             default:
-                return "Invalid Computer Selection";
+                return "invalid computer selection";
         }
     }else if(playerSelection === "scissors"){
         switch (computerSelection) {
@@ -45,12 +45,54 @@ function playRound(playerSelection, computerSelection){
             case "scissors":
                 return "Tie Match! You both chose Scissors.";
             default:
-                return "Invalid Computer Selection";
+                return "invalid computer selection";
         }
     }
-    return "Invalid Player Selection Chosen";
+    return "invalid player selection";
 }
 
-console.log(playRound("scissors", getComputerChoice()));
+function generateGameOutcome(playerWins, computerWins, tieRounds){
+    let matchStats = "Player Wins: " + playerWins + " Computer Wins: " + computerWins + " Tie Rounds in Match: " + tieRounds;
+    if(playerWins > computerWins){
+        return "You Win the Best of 5! \n" + matchStats;
+    }else{
+        return "You Lost the Best of 5! \n" + matchStats;
+    }
+}
+
+function game(){
+    let playerWins = 0;
+    let computerWins = 0;
+    let tieRounds = 0;
+
+    while(playerWins < 3 && computerWins < 3){
+        let playerSelection = prompt("Please enter your choice for rock, paper, scissors: ").toLowerCase();
+        let computerSelection = getComputerChoice();
+        let roundOutcomeMsg = playRound(playerSelection, computerSelection);
+        let roundOutcome = roundOutcomeMsg.substring(0, 8);
+        if(roundOutcomeMsg === "invalid player selection" || roundOutcomeMsg === "invalid computer selection"){
+            continue; 
+        }
+        if(roundOutcome == "You Win!"){
+            playerWins++;
+        }else if(roundOutcome == "You Lose"){
+            computerWins++;
+        }else{
+            tieRounds++;
+        }
+        console.log(roundOutcomeMsg);
+    } 
+    console.log(generateGameOutcome(playerWins, computerWins, tieRounds));
+    let playAgainChoice = "";
+    while(playAgainChoice !== "y" && playAgainChoice !== "n"){
+        playAgainChoice = prompt(generateGameOutcome(playerWins, computerWins, tieRounds) + " \nWould you like to play again y/n?").toLowerCase();
+    }
+    if(playAgainChoice === "y"){
+        game();
+    }
+    return;
+}
+
+game();
 
 
