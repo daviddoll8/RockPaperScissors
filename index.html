@@ -4,9 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
-    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Rock, Paper, Scissors</h1>
+        <div class="game-container">
+            <h4>Play a best of 5 match of Rock, Paper, Scissors against a computer</h6>
+            <div class="score-card">
+                <div class="player-score">
+                    <h5>Player: <span>0</span></h5>
+                </div>
+                <div class="computer-score">
+                    <h5>Computer: <span>0</span></h5>
+                </div>
+            </div>
+            <div class="selection-container">
+                <div class="player-selection">
+                    <img src="images/rock.gif" alt="">
+                </div>
+                <div class="computer-selection">
+                    <img src="images/paper.gif" alt="">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="btn playBtn">
+                    <img src="images/rock.gif" alt="Rock animation">
+                </button>
+                <button class="btn playBtn">
+                    <img src="images/paper.gif" alt="Paper animation">
+                </button>
+                <button class="btn playBtn">
+                    <img src="images/scissors.gif" alt="scissors animation">
+                </button>
+                <button class="btn replayBtn" hidden></button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>

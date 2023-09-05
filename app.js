@@ -1,3 +1,16 @@
+
+function initEvents(){
+    const buttons = document.querySelectorAll(".playBtn");
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let computerSelection = getComputerChoice();
+            let playerSelection = 
+            playRound(playerSelection, computerSelection);
+        });
+    });
+}
+
 function getComputerChoice() {
     let computerSelection = Math.floor(Math.random() * (3));
 
@@ -60,39 +73,41 @@ function generateGameOutcome(playerWins, computerWins, tieRounds){
     }
 }
 
-function game(){
-    let playerWins = 0;
-    let computerWins = 0;
-    let tieRounds = 0;
+initEvents();
 
-    while(playerWins < 3 && computerWins < 3){
-        let playerSelection = prompt("Please enter your choice for rock, paper, scissors: ").toLowerCase();
-        let computerSelection = getComputerChoice();
-        let roundOutcomeMsg = playRound(playerSelection, computerSelection);
-        let roundOutcome = roundOutcomeMsg.substring(0, 8);
-        if(roundOutcomeMsg === "invalid player selection" || roundOutcomeMsg === "invalid computer selection"){
-            continue; 
-        }
-        if(roundOutcome == "You Win!"){
-            playerWins++;
-        }else if(roundOutcome == "You Lose"){
-            computerWins++;
-        }else{
-            tieRounds++;
-        }
-        console.log(roundOutcomeMsg);
-    } 
-    console.log(generateGameOutcome(playerWins, computerWins, tieRounds));
-    let playAgainChoice = "";
-    while(playAgainChoice !== "y" && playAgainChoice !== "n"){
-        playAgainChoice = prompt(generateGameOutcome(playerWins, computerWins, tieRounds) + " \nWould you like to play again y/n?").toLowerCase();
-    }
-    if(playAgainChoice === "y"){
-        game();
-    }
-    return;
-}
+// function game(){
+//     let playerWins = 0;
+//     let computerWins = 0;
+//     let tieRounds = 0;
 
-game();
+//     while(playerWins < 3 && computerWins < 3){
+//         let playerSelection = prompt("Please enter your choice for rock, paper, scissors: ").toLowerCase();
+//         let computerSelection = getComputerChoice();
+//         let roundOutcomeMsg = playRound(playerSelection, computerSelection);
+//         let roundOutcome = roundOutcomeMsg.substring(0, 8);
+//         if(roundOutcomeMsg === "invalid player selection" || roundOutcomeMsg === "invalid computer selection"){
+//             continue; 
+//         }
+//         if(roundOutcome == "You Win!"){
+//             playerWins++;
+//         }else if(roundOutcome == "You Lose"){
+//             computerWins++;
+//         }else{
+//             tieRounds++;
+//         }
+//         console.log(roundOutcomeMsg);
+//     }
+//     console.log(generateGameOutcome(playerWins, computerWins, tieRounds));
+//     let playAgainChoice = "";
+//     while(playAgainChoice !== "y" && playAgainChoice !== "n"){
+//         playAgainChoice = prompt(generateGameOutcome(playerWins, computerWins, tieRounds) + " \nWould you like to play again y/n?").toLowerCase();
+//     }
+//     if(playAgainChoice === "y"){
+//         game();
+//     }
+//     return;
+// }
+
+//game();
 
 
