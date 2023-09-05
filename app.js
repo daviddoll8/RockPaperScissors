@@ -1,13 +1,95 @@
+let playerWins = 0;
+let computerWins = 0;
 
 function initEvents(){
-    const buttons = document.querySelectorAll(".playBtn");
+    let buttons = document.querySelectorAll(".playBtn");
+    let replayButton = document.querySelector(".replayBtn");
 
     buttons.forEach((button) => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
             let computerSelection = getComputerChoice();
-            let playerSelection = 
-            playRound(playerSelection, computerSelection);
+            let playerSelection = e.target.closest('button').id;
+            let roundResult = playRound(playerSelection, computerSelection);
+            updateRoundResults(roundResult, playerSelection, computerSelection);
         });
+    });
+
+    replayButton.addEventListener("click", (e) => {
+        restartGame();
+    });
+}
+
+function updateRoundResults(roundResult, playerSelection, computerSelection){
+    let matchInfo = document.querySelector(".match-info-text");
+    matchInfo.style.display = "block";
+    matchInfo.textContent = roundResult;
+    let matchResult = roundResult.substring(0, 8);
+    let computerImagePath = "images/" + computerSelection + ".gif";
+    let playerImagePath =  "images/" + playerSelection + ".gif";
+    let computerImage = document.querySelector(".computer-selection .selection-img");
+    let playerImage = document.querySelector(".player-selection .selection-img");
+    computerImage.style.display = "block";
+    playerImage.style.display = "block";
+    computerImage.src = computerImagePath;
+    playerImage.src = playerImagePath;
+    switch (matchResult) {
+        case "You Win!":
+            playerWins++;
+            let playerScore = document.querySelector(".player-score span");
+            playerScore.textContent = playerWins;
+            break;
+        case "You Lose":
+            computerWins++;
+            let computerScore = document.querySelector(".computer-score span");
+            computerScore.textContent = computerWins;
+            break;
+        default:
+            break;
+    }
+    if(playerWins === 3 || computerWins === 3){
+        endGame(playerWins, computerWins);
+    }
+}
+
+function endGame(playerWins, computerWins){
+    console.log("here");
+    let btnMsgHeader = document.querySelector(".player-msg");
+    let playButtons = document.getElementsByClassName("playBtn");
+    let replayButton = document.querySelector(".replayBtn");
+    for(let i = 0; i < playButtons.length; i++){
+        playButtons[i].style.display = "none";
+        console.log(playButtons[i]);
+    }
+    replayButton.style.display = "block";
+    console.log("here");
+    console.log("here");
+    if(playerWins > computerWins) {
+        btnMsgHeader.textContent = "You won the best of 5! Would you like to play again?";
+    }else{
+        btnMsgHeader.textContent = "You lost the best of 5! Would you like to play again?";
+    }
+}
+
+function restartGame() {
+    playerWins = 0;
+    computerWins = 0;
+    let playerScore = document.querySelector(".player-score span");
+    let computerScore = document.querySelector(".computer-score span");
+    let replayBtn = document.querySelector(".replayBtn");
+    let playButtons = document.querySelectorAll(".playBtn");
+    let matchInfo = document.querySelector(".match-info-text");
+    let selectionImages = document.querySelectorAll(".selection-img");
+    let playerMsg = document.querySelector(".player-msg");
+    playerMsg.textContent = "Select one for the next round";
+    selectionImages.forEach((image) => {
+        image.style.display = "none";
+    });
+    matchInfo.style.display = "none";
+    playerScore.textContent = playerWins;
+    computerScore.textContent = computerWins;
+    replayBtn.style.display = "none";
+    playButtons.forEach((button) => {
+        button.style.display = "block";
     });
 }
 
@@ -74,40 +156,5 @@ function generateGameOutcome(playerWins, computerWins, tieRounds){
 }
 
 initEvents();
-
-// function game(){
-//     let playerWins = 0;
-//     let computerWins = 0;
-//     let tieRounds = 0;
-
-//     while(playerWins < 3 && computerWins < 3){
-//         let playerSelection = prompt("Please enter your choice for rock, paper, scissors: ").toLowerCase();
-//         let computerSelection = getComputerChoice();
-//         let roundOutcomeMsg = playRound(playerSelection, computerSelection);
-//         let roundOutcome = roundOutcomeMsg.substring(0, 8);
-//         if(roundOutcomeMsg === "invalid player selection" || roundOutcomeMsg === "invalid computer selection"){
-//             continue; 
-//         }
-//         if(roundOutcome == "You Win!"){
-//             playerWins++;
-//         }else if(roundOutcome == "You Lose"){
-//             computerWins++;
-//         }else{
-//             tieRounds++;
-//         }
-//         console.log(roundOutcomeMsg);
-//     }
-//     console.log(generateGameOutcome(playerWins, computerWins, tieRounds));
-//     let playAgainChoice = "";
-//     while(playAgainChoice !== "y" && playAgainChoice !== "n"){
-//         playAgainChoice = prompt(generateGameOutcome(playerWins, computerWins, tieRounds) + " \nWould you like to play again y/n?").toLowerCase();
-//     }
-//     if(playAgainChoice === "y"){
-//         game();
-//     }
-//     return;
-// }
-
-//game();
 
 

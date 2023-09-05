@@ -71,12 +71,30 @@ h3, h4 {
     border-radius: 18px;
 }
 
+.selection-img {
+    display: none;
+}
+
 .player-selections {
     display: flex;
 }
 
 .match-info {
     display: flex;
+}
+
+.match-info-text {
+    display: none;
+}
+
+.replayBtn{
+    font-family: "joystix-monospace", sans-serif;
+    color: #E0E1DD;
+    display: none;
+    padding: 8px 16px;
+    background-color: #778DA9;
+    border-width: 3px;
+    border-color: #E0E1DD;
 }
 
 .player-container {
