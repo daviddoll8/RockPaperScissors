@@ -10,34 +10,47 @@
     <div class="container">
         <h1>Rock, Paper, Scissors</h1>
         <div class="game-container">
-            <h4>Play a best of 5 match of Rock, Paper, Scissors against a computer</h6>
+            <h4 class="game-info">Play a best of 5 match of Rock, Paper, Scissors against a computer</h6>
             <div class="score-card">
-                <div class="player-score">
-                    <h5>Player: <span>0</span></h5>
+                <div class="score-card-header">
+                    <h3>Score</h3>
                 </div>
-                <div class="computer-score">
-                    <h5>Computer: <span>0</span></h5>
+                <div class="score-card-body">
+                    <div class="player-score">
+                        <h4>Player: <span>0</span></h5>
+                    </div>
+                    <div class="computer-score">
+                        <h4>Computer: <span>0</span></h5>
+                    </div>
                 </div>
             </div>
             <div class="selection-container">
-                <div class="player-selection">
-                    <img src="images/rock.gif" alt="">
+                <div class="match-info">
+                    <h3>You Lost this Round! Paper beats Rock.</h3>
                 </div>
-                <div class="computer-selection">
-                    <img src="images/paper.gif" alt="">
+                <div class="player-selections">
+                    <div class="player-selection">
+                        <img src="images/rock.gif" alt="">
+                    </div>
+                    <div class="computer-selection">
+                        <img src="images/paper.gif" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="btn-container">
-                <button class="btn playBtn">
-                    <img src="images/rock.gif" alt="Rock animation">
-                </button>
-                <button class="btn playBtn">
-                    <img src="images/paper.gif" alt="Paper animation">
-                </button>
-                <button class="btn playBtn">
-                    <img src="images/scissors.gif" alt="scissors animation">
-                </button>
-                <button class="btn replayBtn" hidden></button>
+            <div class="player-container">
+                <h5 class="player-msg">Select one for the next round</h5>
+                <div class="btn-container">
+                    <button class="btn playBtn">
+                        <img src="images/rock.gif" alt="Rock animation">
+                    </button>
+                    <button class="btn playBtn">
+                        <img src="images/paper.gif" alt="Paper animation">
+                    </button>
+                    <button class="btn playBtn">
+                        <img src="images/scissors.gif" alt="scissors animation">
+                    </button>
+                    <button class="btn replayBtn" hidden></button>
+                </div>
             </div>
         </div>
     </div>
